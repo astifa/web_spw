@@ -40,13 +40,22 @@
               <td>{{$no++}}</td>
               <td>{{$d->name}}</td>
               <td>{{$d->username}}</td>
-              <td>{{$d->email}}</td>
+              <td width="10%">{{$d->email}}</td>
               <td width="10%">
                 <a href="{{ route('kelola_admin.edit',$d->id_user) }}" class="btn btn-inverse-primary p-2"><i class="mdi mdi-settings-outline" title="Ubah"></i></a>
                 
-                <a href="#" class="btn btn-inverse-danger p-2 text-white" data-toggle="modal" data-target="#modalHapus">
-                  <i class="mdi mdi-delete-outline" title="Hapus"></i>
-                </a>
+    @if($cek > 1)
+                
+    <form action="{{ route('kelola_admin.destroy',$d->id_user) }}" method="POST">
+                      @csrf
+ @method('DELETE')
+ <button type="submit"class="btn btn-inverse-danger p-2 text-white" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"> <i class="mdi mdi-delete-outline" title="Hapus"></i></button>         
+                  </form>
+                  
+                  @else
+                  <button type="submit"class="btn btn-inverse-danger p-2 text-white" onclick="return confirm('Data Admin tidak dapat dihapus')"> <i class="mdi mdi-delete-outline" title="Hapus"></i></button>         
+
+                  @endif
               </td>
             </tbody>
             @endforeach
@@ -54,27 +63,6 @@
         </div>
       </div>
     </div>
-    <div class="modal fade" id="modalHapus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Notif<h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Beneran nih dihapus?</div>
-            <div class="modal-footer">
-              <button class="btn btn-light" type="button" data-dismiss="modal">Ga jadi</button>
-              <a class="btn btn-danger" href="hapusadmin/{{ $d->id_user}}" onclick="event.preventDefault();
-              document.getElementById('hapus-data').submit();">Iya</a>
-              <form id="hapus-data" action="hapusadmin/{{ $d->id_user}}" method="get" style="display: none;">
-                @csrf
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
   @endsection

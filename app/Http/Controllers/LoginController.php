@@ -203,7 +203,7 @@ public function getSekolah(Request $request)
       $query = $request->get('query');
       $data = Sekolah::
       where('npsn', 'LIKE', "%{$query}%")
-      ->get();
+      ->groupBy('nama_sekolah')->get();
       $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
       foreach($data as $row)
       {

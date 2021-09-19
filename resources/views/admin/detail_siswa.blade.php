@@ -115,7 +115,7 @@
                  <td>{{$d->tahun}}</td>
                  <td>{{$d->bulan}}</td>
                  <td>@rupiah($d->omset)</td>
-                 <td><a href="{{$data->link_usaha}}" target="_blank" title="{{$d->link_usaha}}"><i class=" mdi mdi-link-variant"></i> link</a></td>
+                 <td><a href="{{$d->link_usaha}}" target="_blank" title="{{$d->link_usaha}}"><i class=" mdi mdi-link-variant"></i> link</a></td>
                </tr>
                @endforeach
              </tbody>

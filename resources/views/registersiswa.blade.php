@@ -92,9 +92,11 @@
        <label class="bmd-label-floating">Jurusan/Kelas
          @if ($errors->has('kelas'))
          <sup class="text-danger">{{ $errors->first('kelas') }}</sup>
-       @endif</label>
-       <input type="text" name="kelas" class="col-12 form-control" value="{{ old('kelas') }}" placeholder="Jurusan/kelas">
-     </div>
+       @endif
+      </label>
+       <input type="text" name="kelas" class="col-12 form-control mb-1" value="{{ old('kelas') }}" placeholder="Jurusan/kelas">
+     <sup class="text-primary">* Contoh : Multimedia - A</sup>
+      </div>
    </div>
  </div>
 

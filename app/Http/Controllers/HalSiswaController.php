@@ -149,15 +149,21 @@ class HalSiswaController extends Controller
            'alamat' => $request->alamat
        ]);
     }
-
+    
     $data = Siswa::find($id);
-    $foto_nama = null;
-    if ($request->hasFile('foto')) {
-        $foto_nama  = $this->uploadFoto($request, $foto_nama);
-
-        $siswa->foto = $foto_nama;
-
+    if ($request->hasfile('foto')) {            
+        $filename = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('foto')->getClientOriginalName());
+        $request->file('foto')->move(public_path('gambar'), $filename);
+        
+    $data->foto = $filename;
     }
+    // $foto_nama = null;
+    // if ($request->hasFile('foto')) {
+    //     $foto_nama  = $this->uploadFoto($request, $foto_nama);
+
+    //     $siswa->foto = $foto_nama;
+
+    // }
     $data->id_siswa=$request->id_siswa;
     $data->nisn=$request->nisn;
     $data->npsn=$request->npsn;
@@ -170,10 +176,18 @@ class HalSiswaController extends Controller
     $data->kelas=$request->kelas;
     $data->guru_pembimbing=$request->guru_pembimbing;
     $data->tlp_guru=$request->tlp_guru;
-    $data->update();
+    $simpan = $data->update();
 
-    Session::flash('success', 'Data berhasil diubah!');
-    return redirect()->route('d_siswa');
+    // Session::flash('success', 'Data berhasil diubah!');
+    // return redirect()->route('d_siswa');
+    if($simpan){
+        Session::flash('success', 'Data berhasil diubah!');
+        return redirect()->route('d_siswa');
+    } else {
+        Session::flash('errors', ['' => 'Data gagal diubah!']);
+        return redirect()->route('d_siswa');
+    }
+    
 
 }
 
@@ -205,7 +219,7 @@ public function updatesandi(Request $request, $id)
  $request->validate($rules, $message);
 
  $data = Siswa::find($id);
- $data->password=($request->password);
+ $data->password = Hash::make($request->password);
  $data->update();
  Session::flash('success', 'Kata sandi diubah!');
  return redirect()->route('akun');

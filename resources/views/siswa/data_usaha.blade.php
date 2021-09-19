@@ -62,40 +62,49 @@
         </div>
       </div>
     </div>
+    @if ($cek == 1)
+    @else
     <div class="col-md-6 grid-margin stretch-card" style="height: 500px;">
       <div class="card">
        <div class="card-header bg-primary text-white">
         Form Data Usaha 
       </div>
-      <form method="post" action="{{ route('usaha.store') }}">
-        @csrf
-        <div class="col-md-12 mt-2">
-          <div class="form-group">
-            @if (Session::has('success'))
+      @if (Session::has('success'))
             <div class="alert alert-success">
               {{ Session::get('success') }}
             </div>
             @endif
-            @if (Session::has('errors'))
-            <div class="alert alert-danger">
-              {{ Session::get('errors') }}
-            </div>
-            @endif
+      <form method="post" action="{{ route('usaha.store') }}">
+        @csrf
+        <div class="col-md-12 mt-2">
+          <div class="form-group">
+            
+            
             <input type="hidden" name="nisn" class="col-12 validation form-control" value="{{ Auth::guard('siswa')->user()->nisn}}">
             <label class="bmd-label-floating">Nama Usaha</label>
             <input type="text" name="nama_usaha" class="col-12 validation form-control">
+    
+            @if ($errors->has('nama_usaha'))
+                    <sup class="text-danger">{{ $errors->first('nama_usaha') }}</sup>
+                    @endif
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
             <label class="bmd-label-floating">Nomor Telepon</label>
             <input type="text" name="tlp" class="col-12 form-control">
+            @if ($errors->has('tlp'))
+                    <sup class="text-danger">{{ $errors->first('tlp') }}</sup>
+                    @endif
           </div>
         </div>
         <div class="col-md-12">
           <div class="form-group">
             <label class="bmd-label-floating">Alamat</label>
             <textarea class="form-control" name="alamat"></textarea>
+            @if ($errors->has('alamat'))
+                    <sup class="text-danger">{{ $errors->first('alamat') }}</sup>
+                    @endif
           </div>
         </div>
         <div class="col-12 col-md-4" style="text-align: right; float: right;">
@@ -105,6 +114,7 @@
         </div>
       </form>
     </div>
+    @endif
   </div>
   </div>
   <!-- end -->
@@ -113,17 +123,17 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Notif<h5>
+        <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan<h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Beneran nih dihapus?</div>
+        <div class="modal-body">Hapus Data?</div>
         <div class="modal-footer">
           @foreach($data as $d)
-          <button class="btn btn-light" type="button" data-dismiss="modal">Ga jadi</button>
+          <button class="btn btn-light" type="button" data-dismiss="modal">Tidak</button>
           <a class="btn btn-danger" href="hapususaha/{{ $d->id_usaha}}" onclick="event.preventDefault();
-          document.getElementById('hapus-data').submit();">Iya</a>
+          document.getElementById('hapus-data').submit();">Ya</a>
           <form id="hapus-data" action="hapususaha/{{ $d->id_usaha}}" method="get" style="display: none;">
             @csrf
           </form>

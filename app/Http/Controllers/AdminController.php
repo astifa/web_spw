@@ -18,7 +18,8 @@ class AdminController extends Controller
     public function index()
     {
         $data=User::all(); 
-        return view('admin/data_admin',compact('data'));
+        $cek=User::count();
+        return view('admin/data_admin',compact('data','cek'));
     }
 
     /**

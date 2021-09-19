@@ -21,7 +21,8 @@ class HalUsahaController extends Controller
     {
         // $data['data']=DB::table('siswa')->select('id_siswa')->where('id_siswa', '=', Auth::guard('siswa')->user()->id_siswa)->result();
         $data['data']=Usaha::where('nisn','=', Auth::guard('siswa')->user()->nisn)->get(); 
-        return view('siswa.data_usaha',$data);
+        $cek['cek']=Usaha::where('nisn','=', Auth::guard('siswa')->user()->nisn)->count();
+        return view('siswa.data_usaha',$data,$cek);
     }
 
     /**
@@ -48,10 +49,10 @@ class HalUsahaController extends Controller
             'alamat' => 'required',
         ];
         $message = [
-            'nama_usaha.required' => ':attribute tidak boleh kosong', 
-            'tlp.required' => ':attribute tidak boleh kosong',
-            'tlp.numeric' => ':attribute harus angka',  
-            'alamat.required' => ':attribute tidak boleh kosong',       
+            'nama_usaha.required' => '* tidak boleh kosong', 
+            'tlp.required' => '*  tidak boleh kosong',
+            'tlp.numeric' => '* harus angka',  
+            'alamat.required' => '* tidak boleh kosong',       
         ];
         $va = Validator::make($request->all(), $rules, $message);
         if($va->fails()){
@@ -79,7 +80,10 @@ class HalUsahaController extends Controller
             'alamat' => $request['alamat'],
             'nisn' => $request['nisn'],
         ]);
-        Session::flash('success', 'Data berhasil ditambah');
+        Session::flash('success', 'Data berhasil ditambah');                
+        Session::flash('errors', 'Hanya bisa menambahkan 1 usaha saja');
+
+        
         return redirect()->route('usaha.index');
         
     }
@@ -123,6 +127,7 @@ $rules = [
         $data->tlp=($request->tlp);
         $data->alamat=($request->alamat);
         $data->update();
+        Session::flash('errors', 'Hanya bisa menambahkan 1 usaha saja');
         Session::flash('success', 'Data berhasil diubah');
         return redirect()->route('usaha.index');
 

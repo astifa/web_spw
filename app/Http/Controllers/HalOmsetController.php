@@ -24,8 +24,9 @@ class HalOmsetController extends Controller
         //$data =Omset::where('nisn','=', Auth::guard('siswa')->user()->nisn)->get();
         $data = Omset::join('bulan','bulan.id_bulan','=','omset.bulan')
         ->where('nisn','=', Auth::guard('siswa')->user()->nisn)
-        ->orderBy('omset.tahun','asc')
-        ->orderBy('omset.bulan','asc')
+        ->orderBy(DB::raw('CONCAT(omset.tahun,omset.bulan)'), 'asc')
+        // ->orderBy('omset.tahun','asc')
+        // ->orderBy('omset.bulan','asc')
         ->get();
         return view('siswa.data_omset',compact('data'));
     }
@@ -80,6 +81,10 @@ class HalOmsetController extends Controller
                 $id_u = $i->id_usaha;
 
                 if ($cek == $a) {
+                    if($request->omset <= 0){
+                    Session::flash('gagal', 'Data omset tidak boleh kurang dari sama dengan 0');
+                    return redirect()->route('omset.index');
+                    } else {
                     $data = new Omset;
                     $data->id_usaha = $id_u;
                     $data->nisn=$request->nisn;
@@ -90,6 +95,7 @@ class HalOmsetController extends Controller
                     $data->save();
                     Session::flash('sukses', 'Data Berhasil di Tambahkan');
                     return redirect()->route('omset.index');
+                }
                 } 
             } 
         } 
@@ -139,7 +145,11 @@ class HalOmsetController extends Controller
         if($va->fails()){
             return redirect()->back()->withErrors($va)->withInput($request->all);
         }
-
+        if($request->omset <= 0){
+            Session::flash('gagal', 'Data omset tidak boleh kurang dari sama dengan 0');
+            return redirect()->route('omset.index');
+            } else {
+            
         $data = Omset::find($id);
         $data->id_usaha=$request->id_usaha;
         $data->nisn=$request->nisn;
@@ -150,7 +160,7 @@ class HalOmsetController extends Controller
         $data->update();
         Session::flash('sukses', 'Data Berhasil diubah');
         return redirect()->route('omset.index');
-
+            }
 
     }
 

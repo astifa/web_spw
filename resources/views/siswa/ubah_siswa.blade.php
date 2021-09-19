@@ -39,7 +39,7 @@
               <img src="/gambar/{{ $data->foto}}" width="300px" class="img-fluid">
               <input type="hidden" name="id_siswa" value="{{$data->id_siswa}}">
               <input type="file" name="foto" id="input-file-now" data-plugin="dropify" 
-              data-default-file="{{ asset('gambar/'.$data->foto) }}">
+              data-default-file="{{ $data->foto }}">
               @if ($errors->has('foto'))
               <sup class="text-danger">{{ $errors->first('foto') }}</sup>
               @endif
@@ -75,7 +75,7 @@
               <th>Tingkat 
               </th>
               <td><select name="tingkat" class="form-control">
-                <option value="{{ $data->tingkat}}" disabled="">{{ $data->tingkat}}</option>
+                <option value="{{ $data->tingkat}}" disabled>- Pilih Tingkat -</option>
                 <option value="x">X</option>
                 <option value="xi">XI</option>
                 <option value="xii">XII</option>
