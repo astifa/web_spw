@@ -112,8 +112,11 @@
           <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">10 Besar siswa dengan omset tertinggi</p>
-                  <table id="example3" class="table" width="100%">
+                  <h2 class="card-title text-center">
+                    <i class="mdi mdi-trophy-variant text-warning"></i> 10 Besar siswa dengan omset tertinggi
+                    <i class="mdi mdi-trophy-variant text-warning"></i> 
+                  </h2>
+                  <table id="example3" class="table text-capitalize" width="100%">
                 <thead>
                   <tr>
                    <th>No</th>
@@ -127,7 +130,7 @@
                   @foreach($rank as $r)
                 <tr>
                  <td>{{$no++}}</td>
-                 <td>{{$r->nama_lengkap}}</td>
+                 <td><i class=" mdi mdi-checkbox-marked-circle text-primary"> </i>{{$r->nama_lengkap}}</td>
                  <td>{{$r->tingkat}}-{{$r->kelas}}</td>
                  <td>@rupiah($r->omset)</td>
                  </tr>

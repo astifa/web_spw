@@ -5,13 +5,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>SPW - siswa</title>
+  <title>Sekolah Pencetak Wirausaha - Aplikasi</title>
   <meta content="" name="description">
 
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -58,12 +57,12 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center">
-          <h1 data-aos="fade-up">Jadi pengusaha?</h1>
-          <h2 data-aos="fade-up" data-aos-delay="400">Mulai aja dulu, Yuk!</h2>
+          <h1 data-aos="fade-up">Selamat Datang</h1>
+          <h2 data-aos="fade-up" data-aos-delay="400">calon pengusaha sukses!</h2>
           <div data-aos="fade-up" data-aos-delay="600">
             <div class="text-center text-lg-start">
               <a href="{{ route('registersiswa') }}" class="btn-get-started scrollto d-inline-flex align-items-center justify-content-center align-self-center">
-                <span>Mulai</span>
+                <span>Mulai Sekarang</span>
                 <i class="bi bi-arrow-right"></i>
               </a>
             </div>
@@ -276,12 +275,13 @@
     <div class="footer-top">
       <div class="container">
         <div class="row gy-4">
-          <div class="col-lg-5 col-md-12 footer-info">
+          <div class="col-lg-4 col-md-12 footer-info">
             <a href="#" class="logo d-flex align-items-center">
               <img src="assets/img/logo.png" alt="">
               <span>AplikasiSPW</span>
             </a>
-            <p>Sebuah aplikasi yang dapat memudahkan kita dalam melihat perkembangan usaha siswa.</p>
+            <p>Sekolah Pencetak Wirausaha
+              <br></p>
             <div class="social-links mt-3">
               <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -290,19 +290,18 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-6 footer-links">
+          <div class="col-lg-4 col-6 footer-links">
             <h4>Fitur</h4>
             <ul>
               <li><i class="bi bi-chevron-right"></i> <a href="#">Beranda</a></li>
+              <li><i class="bi bi-chevron-right"></i> <a href="/login">Masuk sebagai Guru</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <div class="col-lg-4 col-md-12 footer-contact text-center text-md-start">
             <h4>Kontak Kami</h4>
             <p>
-              Tim Aplikasi SPW <br>
-              <strong>Telp:</strong> +628xx xxx xxx<br>
-              <strong>Email:</strong> info@example.com<br>
+              Tim Aplikasi Sekolah Pencetak Wirausaha (SPW) <br>
             </p>
 
           </div>
@@ -313,7 +312,7 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>Aplikasi</span></strong> SPW 2021
+    <strong><span>Aplikasi</span></strong> Sekolah Pencetak Wirausaha (SPW) 2021
       </div>
       <div class="credits">
       </div>

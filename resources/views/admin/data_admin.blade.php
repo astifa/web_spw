@@ -25,9 +25,9 @@
     </div>
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
-        <div class="card-body p-3">
+        <div class="card-body p-3"> 
           <table id="example3" class="table table-responsive" style="width:100%">
-            <thead>
+            <thead class="text-capitalize">
               <th>no</th>
               <th>nama</th>
               <th>username</th>
@@ -63,6 +63,6 @@
         </div>
       </div>
     </div>
-
+</div>
   </div>
   @endsection

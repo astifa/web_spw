@@ -1,5 +1,3 @@
-@extends('errors::minimal')
-
-@section('title', __('Not Found'))
-@section('code', '404')
-@section('message', __('Halaman Tidak Ada'))
+<img style=" display: block;
+    margin-left: auto;
+    margin-right: auto;" src="images/notfound.png">

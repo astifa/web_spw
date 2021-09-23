@@ -19,8 +19,8 @@ Route::post('getsekolah', 'LoginController@getSekolah')->name('getsekolah');
 Route::get('login', 'AuthController@showFormLogin')->name('login');
 Route::post('login', 'AuthController@login');
 
-Route::get('register', 'AuthController@showFormRegister')->name('register');
-Route::post('register', 'AuthController@register');
+Route::get('candy', 'AuthController@showFormRegister')->name('register');
+Route::post('candy', 'AuthController@register');
 
 //group
 Route::group(['middleware' => 'auth:user,siswa'], function () {
